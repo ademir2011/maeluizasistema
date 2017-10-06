@@ -16,3 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard','Dashboard\DashboardTemplate@index');
+
+Route::resource('maps','Dashboard\MapsController');
+Route::get('/maps/list', 'Dashboard\MapsController@list');
+
+Route::resource('addressAndPhone','Dashboard\AddressAndPhoneController');

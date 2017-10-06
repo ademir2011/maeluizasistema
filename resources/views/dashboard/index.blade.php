@@ -55,19 +55,21 @@
                       <img src="images/office.jpg">
                     </div>
                     <a href="#!user"><img class="circle" src="https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-512.png"></a>
-                    <a href="#!name"><span class="black-text name">John Doe</span></a>
-                    <a href="#!email"><span class="black-text email">jdandturk@gmail.com</span></a>
+                    <a href="#!name"><span class="black-text name">Ademir Bezerra</span></a>
+                    <a href="#!email"><span class="black-text email">teste@teste.com</span></a>
                   </div>
                 </li>
                 <li><div class="divider"></div></li>
-                <li><a href="#!" class="waves-effect"><i class="material-icons">cloud</i>Mapas</a></li>
+                <li><a href="{{ url('/maps') }}" class="waves-effect"><i class="material-icons">location_on</i>Mapas</a></li>
+                <li><a href="{{ url('/addressAndPhone') }}" class="waves-effect"><i class="material-icons">dialpad</i>Endereços e Telefones</a></li>
+                <li><a href="{{ url('/otherDatas') }}" class="waves-effect"><i class="material-icons">folder</i>Outros dados oficiais</a></li>
               </ul>
 
             </div>
 
             <div class="col s12 m12 l12">
 
-              @yield('section');
+              @yield('content')
 
             </div>
 
@@ -84,7 +86,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <script>
-      $( document ).ready(function(){})
+      $(document).ready(function() {
+       $('select').material_select();
+      });
       $('.button-collapse').sideNav({
        menuWidth: 300, // Default is 300
        edge: 'left', // Choose the horizontal origin
