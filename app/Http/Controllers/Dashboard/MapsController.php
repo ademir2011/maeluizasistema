@@ -12,8 +12,7 @@ class MapsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         return view("dashboard.maps.index");
     }
 
@@ -22,8 +21,7 @@ class MapsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         return view("dashboard.maps.create");
     }
 

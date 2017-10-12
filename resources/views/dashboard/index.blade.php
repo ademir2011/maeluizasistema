@@ -52,7 +52,7 @@
                 <li>
                   <div class="user-view">
                     <div class="background">
-                      <img src="images/office.jpg">
+                      <img src="https://i.imgur.com/AMf9X7E.jpg" class="responsive-img">
                     </div>
                     <a href="#!user"><img class="circle" src="https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-512.png"></a>
                     <a href="#!name"><span class="black-text name">Ademir Bezerra</span></a>

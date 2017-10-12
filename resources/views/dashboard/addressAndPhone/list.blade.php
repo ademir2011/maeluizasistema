@@ -2,7 +2,7 @@
 
 @section('content')
 
-  @include('dashboard.maps.header')
+  @include('dashboard.addressAndPhone.header')
 
   <div class="row">
 
@@ -14,7 +14,7 @@
         <thead>
           <tr>
               <th>ID</th>
-              <th>Tipo do marcador</th>
+              <th>Categoria</th>
               <th>Latitude</th>
               <th>Longitude</th>
               <th>Alterar</th>
@@ -47,6 +47,5 @@
     </div>
 
   </div>
-
 
 @endsection

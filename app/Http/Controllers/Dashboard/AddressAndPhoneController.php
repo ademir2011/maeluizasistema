@@ -12,9 +12,8 @@ class AddressAndPhoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return "teste";
+    public function index(){
+        return view("dashboard.addressAndPhone.index");
     }
 
     /**
@@ -22,9 +21,13 @@ class AddressAndPhoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view("dashboard.addressAndPhone.create");
+    }
+
+
+    public function list(){
+        return view("dashboard.addressAndPhone.list");
     }
 
     /**
@@ -44,9 +47,8 @@ class AddressAndPhoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+
     }
 
     /**
@@ -78,8 +80,7 @@ class AddressAndPhoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }
