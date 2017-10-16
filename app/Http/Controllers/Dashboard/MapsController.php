@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Maps;
 
 class MapsController extends Controller
 {
@@ -26,7 +27,10 @@ class MapsController extends Controller
     }
 
     public function list(){
-      return view('dashboard.maps.list');
+
+      $maps = Maps::all();
+
+      return view('dashboard.maps.list', compact("maps"));
     }
 
     /**
@@ -36,7 +40,17 @@ class MapsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        return view('dashboard.maps.list');
+
+      $map = new Maps;
+
+      $map->insert([
+        'type' => $request->type,
+        'lat' => $request->lat,
+        'lng' => $request->lng,
+      ]);
+
+      return redirect('/maps/list');
+
     }
 
     /**
@@ -55,9 +69,11 @@ class MapsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+
+      $maps = Maps::find($id);
+
+      return view("dashboard.maps.edit", compact('maps'));
     }
 
     /**
@@ -67,9 +83,11 @@ class MapsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+
+      Maps::find($id)->update($request->all());
+
+      return redirect()->route('list');
     }
 
     /**
@@ -78,8 +96,10 @@ class MapsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+
+      Maps::find($id)->delete();
+
+      return redirect()->route('list');
     }
 }

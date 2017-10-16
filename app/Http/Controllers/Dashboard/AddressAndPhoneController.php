@@ -22,12 +22,20 @@ class AddressAndPhoneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return view("dashboard.addressAndPhone.create");
+      return view("dashboard.addressAndPhone.create");
     }
 
 
     public function list(){
-        return view("dashboard.addressAndPhone.list");
+      return view("dashboard.addressAndPhone.list");
+    }
+
+    public function listAddress(){
+      return view("dashboard.addressAndPhone.listAddress");
+    }
+
+    public function listPhone(){
+      return view("dashboard.addressAndPhone.listPhone");
     }
 
     /**

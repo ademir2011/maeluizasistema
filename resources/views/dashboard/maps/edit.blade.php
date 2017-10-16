@@ -19,7 +19,8 @@
 
       <div class="card-panel white">
 
-        <form method="POST" action="{{ url('/maps')}}">
+        <form method="POST" action="{{ url('maps/' . $maps->id) }}">
+          <input type="hidden" name="_method" value="PUT">
 
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -27,11 +28,11 @@
 
           <div class="row">
             <div class="input-field col s12 m6 l6">
-              <input id="latitude" type="text" class="validate" placeholder="latitude" name="lat">
+              <input value="{{ $maps->lat }}" id="latitude" type="text" class="validate" placeholder="latitude" name="lat">
               <label for="latitude">Latitude</label>
             </div>
             <div class="input-field col s12 m6 l6">
-              <input id="longitude" type="text" class="validate" placeholder="longitude" name="lng">
+              <input value="{{ $maps->lng }}" id="longitude" type="text" class="validate" placeholder="longitude" name="lng">
               <label for="longitude">Longitude</label>
             </div>
           </div>
@@ -50,7 +51,7 @@
            </div>
           </div>
 
-          <input type="submit" class="waves-effect waves-light btn-large" value="Cadastrar" />
+          <input type="submit" class="waves-effect waves-light btn-large" value="Alterar" />
 
         </form>
 
