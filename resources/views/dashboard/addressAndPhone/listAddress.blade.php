@@ -34,11 +34,18 @@
               <td>{{ $key->lat }}</td>
               <td>{{ $key->lng }}</td>
               <td>{{ $key->type }}</td>
-              <td>{{ $key->local_name }}</td>
+              <td>{{ $key->local_name_address }}</td>
               <td>{{ $key->cep }}</td>
               <td>{{ $key->address }}</td>
-              <td><a class="waves-effect waves-light btn">Alterar</a></td>
-              <td><a class="waves-effect waves-light btn">Excluir</a></td>
+              <form method="GET" action="{{ url("addressAndPhone/" . $key->id . "/editAddress") }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <td><button class="waves-effect waves-light btn" type="submit">Alterar</button></td>
+              </form>
+              <form method="POST" action="{{ url("addressAndPhone/" . $key->id . "/deleteAddress") }}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <td><button class="waves-effect waves-light btn" type="submit">Excluir</button></td>
+              </form>
             </tr>
           @endforeach
         </tbody>

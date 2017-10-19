@@ -62,12 +62,12 @@ class AddressAndPhoneController extends Controller
         $address = new Address;
 
         $address->insert([
-          'type'        => $request->type,
-          'local_name'  => $request->local_name_address,
-          'cep'         => $request->cep,
-          'lat'         => $request->lat,
-          'lng'         => $request->lng,
-          'address'     => $request->address
+          'type'                => $request->type,
+          'local_name_address'  => $request->local_name_address,
+          'cep'                 => $request->cep,
+          'lat'                 => $request->lat,
+          'lng'                 => $request->lng,
+          'address'             => $request->address
         ]);
 
         return redirect('/addressAndPhone/listAddress');
@@ -77,7 +77,7 @@ class AddressAndPhoneController extends Controller
         $phone = new Phone;
 
         $phone->insert([
-          'local_name' => $request->local_name_phone,
+          'local_name_phone' => $request->local_name_phone,
           'phone' => $request->phone
         ]);
 
@@ -103,9 +103,22 @@ class AddressAndPhoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){}
+
+    public function editAddress($id){
+
+      $address = Address::find($id);
+
+      return view("dashboard.addressAndPhone.editAddress", compact("address"));
+
+    }
+
+    public function editPhone($id){
+
+      $phone = Phone::find($id);
+
+      return view("dashboard.addressAndPhone.editPhone", compact("phone"));
+
     }
 
     /**
@@ -115,9 +128,22 @@ class AddressAndPhoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+
+      if ($request->typeAddress == "true") {
+
+        Address::find($id)->update($request->all());
+
+        return redirect()->route("listAddress");
+
+      } else if ($request->typePhone == "true") {
+
+        Phone::find($id)->update($request->all());
+
+        return redirect()->route("listPhone");
+
+      }
+
     }
 
     /**
@@ -126,7 +152,20 @@ class AddressAndPhoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
-        //
+    public function destroy($id){}
+
+    public function deleteAddress($id){
+
+      Address::find($id)->delete();
+
+      return redirect()->route("listAddress");
     }
+
+    public function deletePhone($id){
+
+      Phone::find($id)->delete();
+
+      return redirect()->route("listPhone");
+    }
+
 }

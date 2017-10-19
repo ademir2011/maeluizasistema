@@ -27,10 +27,17 @@
           @foreach ($phones as $key)
             <tr>
               <td>{{ $key->id }}</td>
-              <td>{{ $key->local_name }}</td>
+              <td>{{ $key->local_name_phone }}</td>
               <td>{{ $key->phone }}</td>
-              <td><a class="waves-effect waves-light btn">Alterar</a></td>
-              <td><a class="waves-effect waves-light btn">Excluir</a></td>
+              <form method="GET" action="{{ url("addressAndPhone/" . $key->id . "/editPhone") }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <td><button type="submit" class="waves-effect waves-light btn">Alterar</button></td>
+              </form>
+              <form method="POST" action="{{ url("addressAndPhone/" . $key->id . "/deletePhone") }}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <td><button type="submit" class="waves-effect waves-light btn">Excluir</button></td>
+              </form>
             </tr>
           @endforeach
         </tbody>
