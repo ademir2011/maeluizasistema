@@ -24,20 +24,15 @@
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Polícia militar</td>
-            <td>190</td>
-            <td><a class="waves-effect waves-light btn">Alterar</a></td>
-            <td><a class="waves-effect waves-light btn">Excluir</a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Samu</td>
-            <td>192</td>
-            <td><a class="waves-effect waves-light btn">Alterar</a></td>
-            <td><a class="waves-effect waves-light btn">Excluir</a></td>
-          </tr>
+          @foreach ($phones as $key)
+            <tr>
+              <td>{{ $key->id }}</td>
+              <td>{{ $key->local_name }}</td>
+              <td>{{ $key->phone }}</td>
+              <td><a class="waves-effect waves-light btn">Alterar</a></td>
+              <td><a class="waves-effect waves-light btn">Excluir</a></td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
 

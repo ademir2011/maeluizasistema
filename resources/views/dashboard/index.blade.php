@@ -36,7 +36,11 @@
              <li><a href="mobile.html">Sair</a></li>
            </ul>
            <ul class="side-nav" id="mobile-demo">
-             <li><a href="mobile.html">Sair</a></li>
+             <li><a href="{{ url('/maps') }}" class="waves-effect"><i class="material-icons">location_on</i>Mapas</a></li>
+             <li><a href="{{ url('/addressAndPhone') }}" class="waves-effect"><i class="material-icons">dialpad</i>Endereços e Telefones</a></li>
+             <li><a href="{{ url('/otherDatas') }}" class="waves-effect"><i class="material-icons">folder</i>Outros dados oficiais</a></li>
+             <li class="divider"></li>
+             <li class="center"><a href="mobile.html">Sair</a></li>
            </ul>
          </div>
         </nav>
@@ -59,10 +63,10 @@
                     <a href="#!email"><span class="black-text email">teste@teste.com</span></a>
                   </div>
                 </li>
-                <li><div class="divider"></div></li>
                 <li><a href="{{ url('/maps') }}" class="waves-effect"><i class="material-icons">location_on</i>Mapas</a></li>
                 <li><a href="{{ url('/addressAndPhone') }}" class="waves-effect"><i class="material-icons">dialpad</i>Endereços e Telefones</a></li>
                 <li><a href="{{ url('/otherDatas') }}" class="waves-effect"><i class="material-icons">folder</i>Outros dados oficiais</a></li>
+                <li><div class="divider"></div></li>
               </ul>
 
             </div>

@@ -25,11 +25,11 @@
 
           <div class="row" onchange="checkOption();">
             <div class="col s12 m6 l6">
-              <input name="group1" type="radio" id="test1"/>
+              <input name="group1" type="radio" id="test1" value="optionAddress"/>
               <label for="test1">Endereço</label>
             </div>
             <div class="col s12 m6 l6">
-              <input name="group1" type="radio" id="test2"/>
+              <input name="group1" type="radio" id="test2" value="optionPhone"/>
               <label for="test2">Telefone</label>
             </div>
           </div>
@@ -40,17 +40,17 @@
 
             <div class="row">
               <div class="input-field col s12 m6 l6">
-                <input id="latitude" type="text" class="validate" placeholder="latitude" >
+                <input name="lat" id="latitude" type="text" class="validate" placeholder="latitude" >
                 <label for="latitude">Latitude</label>
               </div>
               <div class="input-field col s12 m6 l6">
-                <input id="longitude" type="text" class="validate" placeholder="longitude" >
+                <input name="lng" id="longitude" type="text" class="validate" placeholder="longitude" >
                 <label for="longitude">Longitude</label>
               </div>
             </div>
 
             <div class="input-field col s12">
-              <select>
+              <select name="type">
                 <option value="" disabled selected>Escolha uma opção</option>
                 <option value="1">Abrigos públicos</option>
                 <option value="2">Posto de Saúde</option>
@@ -61,18 +61,18 @@
 
             <div class="row">
               <div class="input-field col s12 m6 l6">
-                <input id="ifLocalName" type="text" class="validate"/>
+                <input name="local_name_address" id="ifLocalName" type="text" class="validate"/>
                 <label for="ifLocalName">Nome do local</label>
               </div>
               <div class="input-field col s12 m6 l6">
-                <input id="ifCep" type="text" class="validade" onkeyup="cpf(this)"/>
+                <input name="cep" id="ifCep" type="text" class="validade" onkeyup="cpf(this)"/>
                 <label for="ifCep">CEP</label>
               </div>
             </div>
 
             <div class="row">
               <div class="input-field col s12 m12 l12">
-                <input id="ifAddress" type="text" class="validate" />
+                <input name="address" id="ifAddress" type="text" class="validate" />
                 <label for="ifAddress">Endereço</label>
               </div>
             </div>
@@ -83,11 +83,11 @@
 
             <div class="row">
               <div class="input-field col s12 m6 l6">
-                <input id="ifPhoneLocalName" type="text" class="validate" />
+                <input name="local_name_phone" id="ifPhoneLocalName" type="text" class="validate" />
                 <label for="ifPhoneLocalName">Nome do estabelecimento</label>
               </div>
               <div class="input-field col s12 m6 l6">
-                <input type="text" id="ifPhone" class="validate" />
+                <input name="phone" type="text" id="ifPhone" class="validate" />
                 <label for="ifPhone">Telefone</label>
               </div>
             </div>

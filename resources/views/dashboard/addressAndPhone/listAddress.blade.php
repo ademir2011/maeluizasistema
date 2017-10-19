@@ -8,7 +8,7 @@
 
   <div class="row">
 
-    <div class="col s12 m8 offset-m2 l8 offset-l2 center" style="margin-top:25px;">
+    <div class="col s12 m12 l12 center" style="margin-top:25px;">
 
       <div class="card-panel white">
 
@@ -28,28 +28,19 @@
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>5.5252552</td>
-            <td>-35.55555555</td>
-            <td>Abrigo público</td>
-            <td>Igreja Missão</td>
-            <td>59599-999</td>
-            <td>Rua dos alfaiates, 812</td>
-            <td><a class="waves-effect waves-light btn">Alterar</a></td>
-            <td><a class="waves-effect waves-light btn">Excluir</a></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>15.5252552</td>
-            <td>-25.55555555</td>
-            <td>Abrigo público</td>
-            <td>Igreja Missão 2</td>
-            <td>59599-999</td>
-            <td>Rua dos alfaiates, 812</td>
-            <td><a class="waves-effect waves-light btn">Alterar</a></td>
-            <td><a class="waves-effect waves-light btn">Excluir</a></td>
-          </tr>
+          @foreach ($addresses as $key)
+            <tr>
+              <td>{{ $key->id }}</td>
+              <td>{{ $key->lat }}</td>
+              <td>{{ $key->lng }}</td>
+              <td>{{ $key->type }}</td>
+              <td>{{ $key->local_name }}</td>
+              <td>{{ $key->cep }}</td>
+              <td>{{ $key->address }}</td>
+              <td><a class="waves-effect waves-light btn">Alterar</a></td>
+              <td><a class="waves-effect waves-light btn">Excluir</a></td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
 
