@@ -17,3 +17,6 @@ Route::get('/addressAndPhone/listAddress', 'Dashboard\AddressAndPhoneController@
 Route::get('/addressAndPhone/listPhone', 'Dashboard\AddressAndPhoneController@listPhone')->name('listPhone');
 Route::get('/addressAndPhone/list', 'Dashboard\AddressAndPhoneController@list');
 Route::resource('addressAndPhone','Dashboard\AddressAndPhoneController');
+
+Route::get('/news/list', 'Dashboard\NewsController@list')->name('listNews');
+Route::resource('news', 'Dashboard\NewsController');
