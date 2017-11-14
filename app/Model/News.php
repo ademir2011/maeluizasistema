@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model {
 
-  protected $fillable = ['text','photo','data'];
+  protected $fillable = ['text','path_image','data'];
   protected $guarded = ["id"];
-  
+
 }

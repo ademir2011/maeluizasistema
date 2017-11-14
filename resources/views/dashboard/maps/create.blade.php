@@ -45,9 +45,9 @@
                <option value="area_de_risco">Área de riscos</option>
                <option value="ponto_oficial_de_coleta_de_lixo">Ponto oficial de coleta de lixo</option>
                <option value="ponto_oficial_de_descarte_de_lixo">Ponto oficiais de descarte de lixo</option>
-               <option value="area_de_risco">Idosos</option>
-               <option value="area_de_risco">Pessoas com deficiência</option>
-               <option value="area_de_risco">Crianças e adolescente</option>
+               <option value="idosos">Idosos</option>
+               <option value="pessoas_com_deficiencia">Pessoas com deficiência</option>
+               <option value="criancas_e_adolescentes">Crianças e adolescentes</option>
              </select>
              <label>Materialize Select</label>
            </div>

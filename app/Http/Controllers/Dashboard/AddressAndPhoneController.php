@@ -61,7 +61,7 @@ class AddressAndPhoneController extends Controller
 
         $address = new Address;
 
-        $address->insert([
+        $address->create([
           'type'                => $request->type,
           'local_name_address'  => $request->local_name_address,
           'cep'                 => $request->cep,
@@ -76,7 +76,7 @@ class AddressAndPhoneController extends Controller
 
         $phone = new Phone;
 
-        $phone->insert([
+        $phone->create([
           'local_name_phone' => $request->local_name_phone,
           'phone' => $request->phone
         ]);
@@ -94,7 +94,7 @@ class AddressAndPhoneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-
+      
     }
 
     /**

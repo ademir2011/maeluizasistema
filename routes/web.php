@@ -4,6 +4,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('account/authenticate', 'Dashboard\AccountController@authenticate');
+Route::resource('account','Dashboard\AccountController');
+
 Route::get('/dashboard','Dashboard\DashboardTemplate@index');
 
 Route::get('/maps/list', 'Dashboard\MapsController@list')->name('list');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\News;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -18,7 +19,10 @@ class NewsController extends Controller
     }
 
     public function list(){
-      return view("dashboard.news.list");
+
+      $news = News::all();
+
+      return view("dashboard.news.list", compact("news") );
     }
 
     /**
@@ -36,9 +40,33 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+      if($request->hasFile('image')){
+
+        $news = new News;
+
+        $id = $news->create([
+          "text" => $request->text,
+          "path_image" => "storage/newsImage/_teste.jpg",
+          "data" => 1
+        ])->id;
+
+        $newsUpdate = News::find($id);
+
+        $newsUpdate->path_image = "storage/newsImage/" . $id . '_teste.jpg';
+
+        $newsUpdate->save();
+
+        Storage::putFileAs('public/newsImage', $request->image, $id . '_teste.jpg');
+
+        return redirect()->route('listNews');
+      } else {
+
+        return "Nenhuma imagem selecionada !";
+      }
+
+
     }
 
     /**
@@ -58,9 +86,10 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        $news = News::find($id);
+
+        return view("dashboard.news.edit", compact("news"));
     }
 
     /**
@@ -70,9 +99,24 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+
+      if($request->hasFile('image')){
+
+        $news = News::find($id);
+
+        $news->text = $request->text;
+
+        $news->save();
+
+        Storage::putFileAs('public/newsImage', $request->image, $id . '_teste.jpg');
+
+        return redirect()->route('listNews');
+      } else {
+
+        return "Nenhuma imagem selecionada !";
+      }
+
     }
 
     /**
@@ -81,8 +125,17 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+
+      $news = News::find($id);
+
+      $newWord = str_replace("storage","public",$news->path_image);
+
+      Storage::delete($newWord);
+
+      $news->delete();
+
+      return redirect()->route('listNews');
     }
+
 }

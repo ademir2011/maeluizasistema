@@ -22,25 +22,26 @@
           </thead>
 
           <tbody>
+            @foreach ($news as $key)
               <tr>
-                <td>2</td>
+                <td>{{ $key->id }}</td>
                 <td>
-                  <img class="reponsive-img" width="200" height="200" src="http://s2.glbimg.com/SSBY7ytm--wurCD0qzLjtk7VFTs=/1200x630/s.glbimg.com/jo/g1/f/original/2015/04/02/ja1_2-4_muro_caido.jpg" />
+                  <img class="responsive-img" width="300" height="300" src=" {{ asset($key->path_image) }} " />
                 </td>
-                <td>Muro desaba na rua alfa, 88. Cuidado ao passar pelo local</td>
+                <td>{{ $key->text }}</td>
 
-                <form method="GET" action="{{ url('news/' . 2 . '/edit') }}" >
+                <form method="GET" action="{{ url('news/' . $key->id . '/edit') }}" >
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <td><button class="waves-effect waves-light btn" type="submit">Alterar</button></td>
                 </form>
 
-                <form method="POST" action="{{ url('news/' . 2) }} ">
+                <form method="POST" action="{{ url('news/' . $key->id) }} ">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <input type="hidden" name="_method" value="DELETE">
                   <td><button class="waves-effect waves-light btn" type="submit" >Excluir</button></td>
                 </form>
-
               </tr>
+              @endforeach
           </tbody>
         </table>
 
