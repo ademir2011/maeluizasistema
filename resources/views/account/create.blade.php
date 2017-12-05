@@ -44,32 +44,34 @@
 
             <div class="card-panel">
 
-              <form>
+              <form method="POST" action=" {{ url('/account') }} ">
+
+                <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
 
                 <div class="row">
                   <div class="input-field col s12 m12 l12">
-                    <input id="email" name="email" type="email" class="validate"/>
+                    <input id="email" name="email" type="email" class="validate" value="teste@teste"/>
                     <label for="email">E-mail</label>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="input-field col s12 m12 l12">
-                    <input id="user" type="text" class="validate" name="user"/>
+                    <input id="user" type="text" class="validate" name="username" value="teste"/>
                     <label for="user">Usuário</label>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="input-field col s12 m12 l12">
-                    <input id="password" type="password" class="validate" name="password"/>
+                    <input id="password" type="password" class="validate" name="password" value="teste"/>
                     <label for="password">Senha</label>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="input-field col s12 m12 l12">
-                    <input id="confirmpassword" type="password" class="validate" name="confirmpassword"/>
+                    <input id="confirmpassword" type="password" class="validate" name="confirmpassword" value="teste"/>
                     <label for="confirmpassword">Confirme sua senha</label>
                   </div>
                 </div>

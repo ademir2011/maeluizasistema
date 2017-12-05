@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\User;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -25,8 +27,18 @@ class AccountController extends Controller
       return view("account.create");
     }
 
-    public function authenticate(){
+    public function createAuthenticate(){
       return view("account.authenticate");
+    }
+
+    public function authenticate(Request $request){
+
+      if(Auth::attempt(['username'=>$request['user'],'password'=>$request['password']])){
+        return redirect()->route('dashboard');
+      }
+
+      return view('account.authenticate');
+
     }
 
     /**
@@ -35,9 +47,18 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+      $request['type'] = 'normal';
+
+      if ( $request['password'] == $request['confirmpassword'] ) {
+        $request['password'] = bcrypt($request->password);
+        User::create($request->all());
+      } else {
+        return "senhas diferentes";
+      }
+
+      return redirect('/');
     }
 
     /**

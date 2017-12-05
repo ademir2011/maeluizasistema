@@ -44,7 +44,9 @@
 
             <div class="card-panel">
 
-              <form>
+              <form method="POST" action=" {{ url('/account/authenticate') }} ">
+
+                <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
 
                 <div class="row">
                   <div class="input-field col s12 m12 l12">

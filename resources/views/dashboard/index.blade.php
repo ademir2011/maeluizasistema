@@ -33,7 +33,7 @@
            <a href="#!" class="brand-logo">&nbsp&nbsp&nbsp&nbspMãeLuiza</a>
            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
            <ul class="right hide-on-med-and-down">
-             <li><a href="{{ url('/') }}">Sair</a></li>
+             <li><a href="{{ url('/exit') }}">Sair</a></li>
            </ul>
            <ul class="side-nav" id="mobile-demo">
              <li><a href="{{ url('/maps') }}" class="waves-effect"><i class="material-icons">location_on</i>Mapas</a></li>
@@ -41,7 +41,7 @@
              <li><a href="{{ url('/news') }}" class="waves-effect"><i class="material-icons">art_track</i>Notícias</a></li>
              <li class="divider"></li>
              <li><a href="#modal1" class="waves-effect"><i class="material-icons">announcement</i>Alerta</a></li>
-             <li class="center"><a href="{{ url('/') }}">Sair</a></li>
+             <li class="center"><a href="{{ url('/exit') }}">Sair</a></li>
            </ul>
          </div>
         </nav>
@@ -74,6 +74,7 @@
             </div>
 
             <div class="col s12 m12 l12">
+
 
               @yield('content')
 

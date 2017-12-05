@@ -33,7 +33,7 @@
          </ul>
          <ul class="right">
            <li><a href="{{ url('/account/create') }}">Cadastrar</a></li>
-           <li><a href="{{ url('/dashboard') }}">Autenticar</a></li>
+           <li><a href="{{ url('/account/createAuthenticate') }}">Autenticar</a></li>
          </ul>
         </div>
       </nav>
