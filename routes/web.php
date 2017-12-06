@@ -31,4 +31,7 @@ Route::group(['middleware' => 'auth'], function(){
   Route::get('/news/list', 'Dashboard\NewsController@list')->name('listNews');
   Route::resource('news', 'Dashboard\NewsController');
 
+  Route::get('/conduct/list', 'Dashboard\ConductController@list')->name('listConduct');
+  Route::resource('conduct', 'Dashboard\ConductController');
+
 });
