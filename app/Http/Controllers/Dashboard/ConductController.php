@@ -47,11 +47,13 @@ class ConductController extends Controller
 
         $conduct = new Conduct;
 
+        date_default_timezone_set('America/Recife');
+
         $id = $conduct->create([
           "phone" => "teste",
           "text" => $request->text,
           "path_image" => "teste",
-          "date" => "teste"
+          "date" => date('dmY')
         ])->id;
 
         $conductUpdate = Conduct::find($id);

@@ -39,7 +39,8 @@
              <li><a href="{{ url('/maps') }}" class="waves-effect"><i class="material-icons">location_on</i>Mapas</a></li>
              <li><a href="{{ url('/addressAndPhone') }}" class="waves-effect"><i class="material-icons">dialpad</i>Endereços e Telefones</a></li>
              <li><a href="{{ url('/news') }}" class="waves-effect"><i class="material-icons">art_track</i>Notícias</a></li>
-             <li><a href="{{ url('/conduct') }}" class="waves-effect"><i class="material-icon">thumb_up</i>Conduta</a></li>
+             <li><a href="{{ url('/conduct') }}" class="waves-effect"><i class="material-icons">thumb_up</i>Conduta</a></li>
+             <li><a href="{{ url('/api') }}"><i class="material-icons">folder</i>API</a></li>
              <li class="divider"></li>
              <li><a href="#modal1" class="waves-effect"><i class="material-icons">announcement</i>Alerta</a></li>
              <li class="center"><a href="{{ url('/exit') }}">Sair</a></li>
@@ -69,6 +70,7 @@
                 <li><a href="{{ url('/addressAndPhone') }}" class="waves-effect"><i class="material-icons">dialpad</i>Endereços e Telefones</a></li>
                 <li><a href="{{ url('/news') }}" class="waves-effect"><i class="material-icons">art_track</i>Notícias</a></li>
                 <li><a href="{{ url('/conduct') }}" class="waves-effect"><i class="material-icons">thumb_up</i>Conduta</a></li>
+                <li><a href="{{ url('/api') }}"><i class="material-icons">folder</i>API</a></li>
                 <li><div class="divider"></div></li>
                 <li><a href="#modal1" class="waves-effect red-text modal-trigger"><i class="material-icons">announcement</i>Alerta</a></li>
               </ul>

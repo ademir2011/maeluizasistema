@@ -11,6 +11,8 @@ Route::post('account/authenticate', 'Dashboard\AccountController@authenticate');
 Route::get('account/createAuthenticate', 'Dashboard\AccountController@createAuthenticate')->name('login');
 Route::resource('account','Dashboard\AccountController');
 
+Route::resource('api','Dashboard\APIController');
+
 Route::group(['middleware' => 'auth'], function(){
 
   Route::get('/dashboard','Dashboard\DashboardTemplate@index')->name('dashboard');

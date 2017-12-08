@@ -46,10 +46,12 @@ class NewsController extends Controller
 
         $news = new News;
 
+        date_default_timezone_set('America/Recife');
+
         $id = $news->create([
           "text" => $request->text,
           "path_image" => "storage/newsImage/_teste.jpg",
-          "data" => 1
+          "data" => date('dmY')
         ])->id;
 
         $newsUpdate = News::find($id);
