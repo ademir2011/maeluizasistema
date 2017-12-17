@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\News;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class NewsController extends Controller
 {
@@ -20,7 +22,9 @@ class NewsController extends Controller
 
     public function list(){
 
-      $news = News::all();
+      $news = DB::transaction(function () {
+        return DB::table('noticias')->select()->get();
+      });
 
       return view("dashboard.news.list", compact("news") );
     }
@@ -44,21 +48,28 @@ class NewsController extends Controller
 
       if($request->hasFile('image')){
 
-        $news = new News;
-
         date_default_timezone_set('America/Recife');
 
-        $id = $news->create([
-          "text" => $request->text,
-          "path_image" => "storage/newsImage/_teste.jpg",
-          "data" => date('dmY')
-        ])->id;
+        $id = DB::transaction(function () use ($request) {
+          return DB::table('noticias')->insertGetId([
+            'data'    => date('dmY'),
+            'texto'   => $request->text,
+            'foto'    => file_get_contents($request->image->getRealPath()),
+            'caminho' => ''
+          ]);
+        });
 
-        $newsUpdate = News::find($id);
+        $newsUpdate = DB::transaction(function () use ($id) {
+          return DB::table('noticias')->where('id',$id)->first();
+        });
 
-        $newsUpdate->path_image = "storage/newsImage/" . $id . '_teste.jpg';
+        $newsUpdate->caminho = "storage/newsImage/" . $id . '_teste.jpg';
 
-        $newsUpdate->save();
+        DB::transaction(function () use ($newsUpdate) {
+          DB::table('noticias')->where('id',$newsUpdate->id)->update([
+            'caminho' => $newsUpdate->caminho
+          ]);
+        });
 
         Storage::putFileAs('public/newsImage', $request->image, $id . '_teste.jpg');
 
@@ -89,7 +100,10 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $news = News::find($id);
+
+        $news = DB::transaction(function () use ($id) {
+          return DB::table('noticias')->where('id',$id)->first();
+        });
 
         return view("dashboard.news.edit", compact("news"));
     }
@@ -105,11 +119,12 @@ class NewsController extends Controller
 
       if($request->hasFile('image')){
 
-        $news = News::find($id);
-
-        $news->text = $request->text;
-
-        $news->save();
+        DB::transaction(function () use ($request, $id) {
+          DB::table('noticias')->where('id',$id)->update([
+            'foto'    => file_get_contents($request->image->getRealPath()),
+            'texto'   => $request->text
+          ]);
+        });
 
         Storage::putFileAs('public/newsImage', $request->image, $id . '_teste.jpg');
 
@@ -129,13 +144,17 @@ class NewsController extends Controller
      */
     public function destroy($id){
 
-      $news = News::find($id);
+      $news = DB::transaction(function () use ($id) {
+        return DB::table('noticias')->where('id',$id)->first();
+      });
 
-      $newWord = str_replace("storage","public",$news->path_image);
+      $newWord = str_replace("storage","public",$news->caminho);
 
       Storage::delete($newWord);
 
-      $news->delete();
+      DB::transaction(function () use ($id) {
+        DB::table('noticias')->where('id','=',$id)->delete();
+      });
 
       return redirect()->route('listNews');
     }

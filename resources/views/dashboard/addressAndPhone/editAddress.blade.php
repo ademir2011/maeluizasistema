@@ -49,7 +49,7 @@
 
           <div class="row">
             <div class="input-field col s12 m6 l6">
-              <input name="local_name_address" id="ifLocalName" type="text" class="validate" value="{{ $address->local_name_address }}"/>
+              <input name="localName" id="ifLocalName" type="text" class="validate" value="{{ $address->localName }}"/>
               <label for="ifLocalName">Nome do local</label>
             </div>
             <div class="input-field col s12 m6 l6">

@@ -27,7 +27,7 @@
           @foreach ($phones as $key)
             <tr>
               <td>{{ $key->id }}</td>
-              <td>{{ $key->local_name_phone }}</td>
+              <td>{{ $key->localName }}</td>
               <td>{{ $key->phone }}</td>
               <form method="GET" action="{{ url("addressAndPhone/" . $key->id . "/editPhone") }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

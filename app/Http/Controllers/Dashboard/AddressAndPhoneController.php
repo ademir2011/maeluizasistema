@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Address;
 use App\Model\Phone;
+use Illuminate\Support\Facades\DB;
 
 class AddressAndPhoneController extends Controller
 {
@@ -35,7 +36,9 @@ class AddressAndPhoneController extends Controller
 
     public function listAddress(){
 
-      $addresses  = Address::all();
+      $addresses = DB::transaction(function () {
+        return DB::table('enderecos')->select()->get();
+      });
 
       return view("dashboard.addressAndPhone.listAddress", compact("addresses"));
 
@@ -43,7 +46,9 @@ class AddressAndPhoneController extends Controller
 
     public function listPhone(){
 
-      $phones     = Phone::all();
+      $phones = DB::transaction(function () {
+        return DB::table('telefones')->select()->get();
+      });
 
       return view("dashboard.addressAndPhone.listPhone", compact("phones"));
 
@@ -59,27 +64,30 @@ class AddressAndPhoneController extends Controller
 
       if ($request->group1 == "optionAddress") {
 
-        $address = new Address;
+        $request->cep = str_replace('-', '', $request->cep);
 
-        $address->create([
-          'type'                => $request->type,
-          'local_name_address'  => $request->local_name_address,
-          'cep'                 => $request->cep,
-          'lat'                 => $request->lat,
-          'lng'                 => $request->lng,
-          'address'             => $request->address
-        ]);
+        DB::transaction(function () use ($request) {
+          DB::table('enderecos')->insert([
+            'type'                => $request->type,
+            'lat'                 => $request->lat,
+            'lng'                 => $request->lng,
+            'localName'           => $request->localNameA,
+            'cep'                 => $request->cep,
+            'address'             => $request->address,
+            'phone'               => 1
+          ]);
+        });
 
         return redirect('/addressAndPhone/listAddress');
 
       } else if ($request->group1 == "optionPhone") {
 
-        $phone = new Phone;
-
-        $phone->create([
-          'local_name_phone' => $request->local_name_phone,
-          'phone' => $request->phone
-        ]);
+        DB::transaction(function () use ($request) {
+          DB::table('telefones')->insert([
+            'localName' => $request->localNameP,
+            'phone'     => $request->phone
+          ]);
+        });
 
         return redirect('/addressAndPhone/listPhone');
 
@@ -94,7 +102,7 @@ class AddressAndPhoneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-      
+
     }
 
     /**
@@ -107,7 +115,9 @@ class AddressAndPhoneController extends Controller
 
     public function editAddress($id){
 
-      $address = Address::find($id);
+      $address = DB::transaction(function () use ($id) {
+        return DB::table('enderecos')->where('id','=',$id)->first();
+      });
 
       return view("dashboard.addressAndPhone.editAddress", compact("address"));
 
@@ -115,7 +125,9 @@ class AddressAndPhoneController extends Controller
 
     public function editPhone($id){
 
-      $phone = Phone::find($id);
+      $phone = DB::transaction(function () use ($id) {
+        return DB::table('telefones')->where('id','=',$id)->first();
+      });
 
       return view("dashboard.addressAndPhone.editPhone", compact("phone"));
 
@@ -132,13 +144,30 @@ class AddressAndPhoneController extends Controller
 
       if ($request->typeAddress == "true") {
 
-        Address::find($id)->update($request->all());
+        DB::transaction(function () use ($request, $id) {
+
+          $request->cep = str_replace('-', '', $request->cep);
+
+          DB::table('enderecos')->where('id','=',$id)->update([
+            'type'                => $request->type,
+            'lat'                 => $request->lat,
+            'lng'                 => $request->lng,
+            'localName'           => $request->localName,
+            'cep'                 => $request->cep,
+            'address'             => $request->address
+          ]);
+        });
 
         return redirect()->route("listAddress");
 
       } else if ($request->typePhone == "true") {
 
-        Phone::find($id)->update($request->all());
+        DB::transaction(function () use ($request, $id) {
+          DB::table('telefones')->where('id','=',$id)->update([
+            'localName'  => $request->localName,
+            'phone'   => $request->phone
+          ]);
+        });
 
         return redirect()->route("listPhone");
 
@@ -156,14 +185,18 @@ class AddressAndPhoneController extends Controller
 
     public function deleteAddress($id){
 
-      Address::find($id)->delete();
+      DB::transaction(function () use ($id) {
+        DB::table('enderecos')->where('id','=',$id)->delete();
+      });
 
       return redirect()->route("listAddress");
     }
 
     public function deletePhone($id){
 
-      Phone::find($id)->delete();
+      DB::transaction(function () use ($id) {
+        DB::table('telefones')->where('id','=',$id)->delete();
+      });
 
       return redirect()->route("listPhone");
     }

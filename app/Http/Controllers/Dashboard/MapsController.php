@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Maps;
+use Illuminate\Support\Facades\DB;
 
 class MapsController extends Controller
 {
@@ -28,7 +29,9 @@ class MapsController extends Controller
 
     public function list(){
 
-      $maps = Maps::all();
+      $maps = DB::transaction(function () {
+        return DB::table('mapas')->select()->get();
+      });
 
       return view('dashboard.maps.list', compact("maps"));
     }
@@ -41,13 +44,14 @@ class MapsController extends Controller
      */
     public function store(Request $request){
 
-      $map = new Maps;
-
-      $map->create([
-        'type' => $request->type,
-        'lat' => $request->lat,
-        'lng' => $request->lng,
-      ]);
+      DB::transaction(function () use ($request) {
+        DB::table('mapas')->insert([
+          'type' => $request->type,
+          'name' => 'default',
+          'lat'  => $request->lat,
+          'lng'  => $request->lng
+        ]);
+      });
 
       return redirect('/maps/list');
 
@@ -71,7 +75,9 @@ class MapsController extends Controller
      */
     public function edit($id){
 
-      $maps = Maps::find($id);
+      $maps = DB::transaction(function () use ($id) {
+        return DB::table('mapas')->where('id','=',$id)->first();
+      });
 
       return view("dashboard.maps.edit", compact('maps'));
     }
@@ -85,7 +91,13 @@ class MapsController extends Controller
      */
     public function update(Request $request, $id){
 
-      Maps::find($id)->update($request->all());
+      DB::transaction(function () use ($request, $id) {
+        DB::table('mapas')->where('id','=',$id)->update([
+          'type'  => $request->type,
+          'lat'   => $request->lat,
+          'lng'   => $request->lng
+        ]);
+      });
 
       return redirect()->route('list');
     }
@@ -98,7 +110,9 @@ class MapsController extends Controller
      */
     public function destroy($id){
 
-      Maps::find($id)->delete();
+      DB::transaction(function () use ($id) {
+        DB::table('mapas')->where('id','=',$id)->delete();
+      });
 
       return redirect()->route('list');
     }

@@ -26,9 +26,9 @@
               <tr>
                 <td>{{ $key->id }}</td>
                 <td>
-                  <img class="responsive-img" width="300" height="300" src=" {{ asset($key->path_image) }} " />
+                  <img class="responsive-img" width="300" height="300" src="{{ asset($key->caminho) }} " />
                 </td>
-                <td>{{ $key->text }}</td>
+                <td>{{ $key->texto }}</td>
 
                 <form method="GET" action="{{ url('news/' . $key->id . '/edit') }}" >
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -26,7 +26,7 @@
 
           <div class="row">
             <div class="input-field col s12 m6 l6">
-              <input name="local_name_phone" id="ifPhoneLocalName" type="text" class="validate" value="{{ $phone->local_name_phone }}"/>
+              <input name="localName" id="ifPhoneLocalName" type="text" class="validate" value="{{ $phone->localName }}"/>
               <label for="ifPhoneLocalName">Nome do estabelecimento</label>
             </div>
             <div class="input-field col s12 m6 l6">

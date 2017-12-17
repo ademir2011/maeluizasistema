@@ -34,7 +34,7 @@
               <td>{{ $key->lat }}</td>
               <td>{{ $key->lng }}</td>
               <td>{{ $key->type }}</td>
-              <td>{{ $key->local_name_address }}</td>
+              <td>{{ $key->localName }}</td>
               <td>{{ $key->cep }}</td>
               <td>{{ $key->address }}</td>
               <form method="GET" action="{{ url("addressAndPhone/" . $key->id . "/editAddress") }}">

@@ -61,7 +61,7 @@
 
             <div class="row">
               <div class="input-field col s12 m6 l6">
-                <input name="local_name_address" id="ifLocalName" type="text" class="validate"/>
+                <input name="localNameA" id="ifLocalName" type="text" class="validate"/>
                 <label for="ifLocalName">Nome do local</label>
               </div>
               <div class="input-field col s12 m6 l6">
@@ -83,7 +83,7 @@
 
             <div class="row">
               <div class="input-field col s12 m6 l6">
-                <input name="local_name_phone" id="ifPhoneLocalName" type="text" class="validate" />
+                <input name="localNameP" id="ifPhoneLocalName" type="text" class="validate" />
                 <label for="ifPhoneLocalName">Nome do estabelecimento</label>
               </div>
               <div class="input-field col s12 m6 l6">
