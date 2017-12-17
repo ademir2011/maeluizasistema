@@ -25,7 +25,7 @@
 
           <div class="row">
             <div class="col s12 m12 l12">
-              <img class="responsive-img" src=" {{ asset($conduct->path_image) }} " />
+              <img class="responsive-img" src=" {{ asset($conduct->caminho) }} " />
             </div>
           </div>
 
@@ -45,7 +45,7 @@
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="text" type="text" class="validate" name="text" value="{{ $conduct->text }}" />
+              <input id="text" type="text" class="validate" name="text" value="{{ $conduct->texto }}" />
              <label for="text">Texto</label>
            </div>
           </div>

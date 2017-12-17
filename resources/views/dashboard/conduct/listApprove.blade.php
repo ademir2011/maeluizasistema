@@ -16,23 +16,23 @@
                 <th>ID</th>
                 <th>Imagem</th>
                 <th>Texto</th>
-                <th>Alterar</th>
+                <th>Aprovar</th>
                 <th>Excluir</th>
             </tr>
           </thead>
 
           <tbody>
-            @foreach ($conducts as $key)
+            @foreach ($conducsNotApprove as $key)
               <tr>
                 <td>{{ $key->id }}</td>
                 <td>
-                  <img class="responsive-img" width="300" height="300" src=" {{ asset($key->caminho) }} " />
+                  <img class="responsive-img" width="300" height="300" src=" {{ $key->foto }} " />
                 </td>
                 <td>{{ $key->texto }}</td>
 
-                <form method="GET" action="{{ url('conduct/' . $key->id . '/edit') }}" >
+                <form method="GET" action="{{ url('conduct/' . $key->id . '/approveItem') }}" >
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <td><button class="waves-effect waves-light btn" type="submit">Alterar</button></td>
+                  <td><button class="waves-effect waves-light btn" type="submit">Aprovar</button></td>
                 </form>
 
                 <form method="POST" action="{{ url('conduct/' . $key->id) }} ">
@@ -42,7 +42,7 @@
                 </form>
 
               </tr>
-              @endforeach
+            @endforeach
           </tbody>
         </table>
 

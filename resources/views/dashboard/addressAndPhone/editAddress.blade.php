@@ -40,10 +40,10 @@
           <div class="input-field col s12">
             <select name="type">
               <option value="" disabled selected>Escolha uma opção</option>
-              <option value="1">Abrigos públicos</option>
-              <option value="2">Posto de Saúde</option>
-              <option value="3">Posto de Polícia</option>
-              <option value="3">Outro local</option>
+              <option value="abrigos">Abrigos públicos</option>
+              <option value="postos_saude">Posto de Saúde</option>
+              <option value="postos_policia">Posto de Polícia</option>
+              <option value="outros">Outro local</option>
             </select>
           </div>
 

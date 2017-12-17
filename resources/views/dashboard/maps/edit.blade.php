@@ -41,14 +41,14 @@
             <div class="input-field col s12">
              <select name="type">
                <option value="" disabled selected>Escolha a opção correta</option>
-               <option value="rota_de_fuga">Rota de fuga</option>
-               <option value="ponto_de_encontro">Ponto de encontro</option>
-               <option value="area_de_risco">Área de riscos</option>
-               <option value="ponto_oficial_de_coleta_de_lixo">Ponto oficial de coleta de lixo</option>
-               <option value="ponto_oficial_de_descarte_de_lixo">Ponto oficiais de descarte de lixo</option>
-               <option value="idosos">Idosos</option>
+               <option value="rotas">Rota de fuga</option>
+               <option value="pontos">Ponto de encontro</option>
+               <option value="areas">Área de riscos</option>
+               <option value="coleta">Ponto oficial de coleta de lixo</option>
+               <option value="descarte">Ponto oficiais de descarte de lixo</option>
+               {{-- <option value="idosos">Idosos</option>
                <option value="pessoas_com_deficiencia">Pessoas com deficiência</option>
-               <option value="criancas_e_adolescentes">Crianças e adolescentes</option>
+               <option value="criancas_e_adolescentes">Crianças e adolescentes</option> --}}
              </select>
              <label>Materialize Select</label>
            </div>

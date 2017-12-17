@@ -5,6 +5,7 @@
     <div class="card-panel white">
       <a href="{{ url('/conduct/create') }}" class="waves-effect waves-light btn-large">Cadastrar</a>
       <a href="{{ url('/conduct/list') }}" class="waves-effect waves-light btn-large">Listagem</a>
+      <a href="{{ url('/conduct/approve') }}" class="waves-effect waves-light btn-large">Aprovação</a>
     </div>
 
   </div>
