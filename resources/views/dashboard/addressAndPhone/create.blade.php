@@ -64,9 +64,13 @@
                 <input name="localNameA" id="ifLocalName" type="text" class="validate"/>
                 <label for="ifLocalName">Nome do local</label>
               </div>
-              <div class="input-field col s12 m6 l6">
+              <div class="input-field col s12 m3 l3">
                 <input name="cep" id="ifCep" type="text" class="validade" onkeyup="cpf(this)"/>
                 <label for="ifCep">CEP</label>
+              </div>
+              <div class="input-field col s12 m3 l3">
+                <input name="phoneE" id="ifPhoneE" type="number" class="validade"/>
+                <label for="ifPhoneE">Telefone</label>
               </div>
             </div>
 

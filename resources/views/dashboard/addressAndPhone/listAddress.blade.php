@@ -22,6 +22,7 @@
               <th>Nome do local</th>
               <th>CEP</th>
               <th>Endereço</th>
+              <th>Telefone</th>
               <th>Alterar</th>
               <th>Excluir</th>
           </tr>
@@ -37,6 +38,7 @@
               <td>{{ $key->localName }}</td>
               <td>{{ $key->cep }}</td>
               <td>{{ $key->address }}</td>
+              <td>{{ $key->phone }}</td>
               <form method="GET" action="{{ url("addressAndPhone/" . $key->id . "/editAddress") }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <td><button class="waves-effect waves-light btn" type="submit">Alterar</button></td>

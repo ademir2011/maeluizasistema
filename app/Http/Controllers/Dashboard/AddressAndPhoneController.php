@@ -74,7 +74,7 @@ class AddressAndPhoneController extends Controller
             'localName'           => $request->localNameA,
             'cep'                 => $request->cep,
             'address'             => $request->address,
-            'phone'               => 1
+            'phone'               => $request->phoneE
           ]);
         });
 
@@ -152,9 +152,10 @@ class AddressAndPhoneController extends Controller
             'type'                => $request->type,
             'lat'                 => $request->lat,
             'lng'                 => $request->lng,
-            'localName'           => $request->localName,
+            'localName'           => $request->localNameA,
             'cep'                 => $request->cep,
-            'address'             => $request->address
+            'address'             => $request->address,
+            'phone'               => $request->phoneE
           ]);
         });
 
